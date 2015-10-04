@@ -4,8 +4,8 @@
  * Time: 3:47 PM
  */
 using System;
-using BBCodes;
-using BBCodes.Visitors;
+using BBCodesExtended;
+using BBCodesExtended.Generators;
 
 namespace ConsoleTests
 {

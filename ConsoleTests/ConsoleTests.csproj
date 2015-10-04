@@ -41,9 +41,9 @@
     <None Include="app.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\BBCodes\BBCodes.csproj">
+    <ProjectReference Include="..\BBCodesExtended\BBCodesExtended.csproj">
       <Project>{C448439F-4EE9-4D92-B970-1E3EB174E9C6}</Project>
-      <Name>BBCodes</Name>
+      <Name>BBCodesExtended</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.Targets" />

@@ -1,0 +1,83 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Build">
+  <PropertyGroup>
+    <ProjectGuid>{C448439F-4EE9-4D92-B970-1E3EB174E9C6}</ProjectGuid>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <OutputType>Library</OutputType>
+    <RootNamespace>BBCodesExtended</RootNamespace>
+    <AssemblyName>BBCodesExtended</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Platform)' == 'x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <DebugSymbols>True</DebugSymbols>
+    <DebugType>Full</DebugType>
+    <Optimize>False</Optimize>
+    <CheckForOverflowUnderflow>True</CheckForOverflowUnderflow>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <DebugSymbols>False</DebugSymbols>
+    <DebugType>None</DebugType>
+    <Optimize>True</Optimize>
+    <CheckForOverflowUnderflow>False</CheckForOverflowUnderflow>
+    <DefineConstants>TRACE</DefineConstants>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System.Web" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BBCode.cs" />
+    <Compile Include="NodeList.cs" />
+    <Compile Include="Nodes\CenterNode.cs" />
+    <Compile Include="Nodes\EmailNode.cs" />
+    <Compile Include="Nodes\ListNode.cs" />
+    <Compile Include="Nodes\SubscriptNode.cs" />
+    <Compile Include="Nodes\SuperscriptNode.cs" />
+    <Compile Include="Nodes\TableRowNode.cs" />
+    <Compile Include="Nodes\TableDataNode.cs" />
+    <Compile Include="Nodes\TableHeaderNode.cs" />
+    <Compile Include="Nodes\TableNode.cs" />
+    <Compile Include="Nodes\TextColorNode.cs" />
+    <Compile Include="Nodes\TextSizeNode.cs" />
+    <Compile Include="SmileyParser.cs" />
+    <Compile Include="StringExtensions.cs" />
+    <Compile Include="Generators\CodeGenerator.cs" />
+    <Compile Include="Generators\HTMLGenerator.cs" />
+    <Compile Include="Generators\IGenerator.cs" />
+    <Compile Include="Generators\XMLGenerator.cs" />
+    <Compile Include="Generators\XmlTreeGenerator.cs" />
+    <Compile Include="BBCodeWebHandler.cs" />
+    <None Include="..\README.txt">
+      <Link>README.txt</Link>
+    </None>
+    <None Include="TODO.txt" />
+    <None Include="BBCodes.txt" />
+    <Compile Include="Nodes\BNode.cs" />
+    <Compile Include="Nodes\CodeNode.cs" />
+    <Compile Include="Nodes\ImageNode.cs" />
+    <Compile Include="Nodes\INode.cs" />
+    <Compile Include="Nodes\ListItemNode.cs" />
+    <Compile Include="Nodes\OrderedListNode.cs" />
+    <Compile Include="Nodes\UnorderedListNode.cs" />
+    <Compile Include="Nodes\Node.cs" />
+    <Compile Include="Nodes\QuoteNode.cs" />
+    <Compile Include="Nodes\SNode.cs" />
+    <Compile Include="Nodes\TextNode.cs" />
+    <Compile Include="Nodes\UNode.cs" />
+    <Compile Include="Nodes\URLNode.cs" />
+    <Compile Include="Nodes\YoutubeNode.cs" />
+    <Compile Include="BBCodeParser.cs" />
+    <Compile Include="ParseStrictness.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.Targets" />
+</Project>
