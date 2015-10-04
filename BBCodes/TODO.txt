@@ -1,3 +1,19 @@
-﻿Add images for smileys & basic emoji
-Remove last node by name, not last index
-Add samples
+﻿mlnlover11:
+- Add images for smileys & basic emoji
+- Remove last node by name, not last index
+
+Tim:
+- CSS, JS, XSS injection prevention
+	https://msdn.microsoft.com/en-us/library/system.web.security.antixss.antixssencoder.cssencode(v=vs.110).aspx
+- Do not render empty tags except for tables
+- Support:
+	[quote author=someusername]...[/quote]
+	[quote author=someusername post=guid]...[/quote]
+	[quote author=someusername post=guid date=datetimestamp]...[/quote]
+  Now it is only [quote] and [quote=someusername]
+- Support anchor + jump tag.
+- Support del tag. Usefull for rendering a difference (color) between strikethrough (as in wrong) and del (as in deleted).
+- Support spoiler tag
+- Support modbreak tag
+- Support offtopic tag
+- Support membersonly tag

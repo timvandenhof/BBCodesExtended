@@ -57,9 +57,8 @@ namespace BBCodes
                 Nodes.Add(new CenterNode());
                 Nodes.Add(new TableNode());
                 Nodes.Add(new TableHeaderNode());
-                Nodes.Add(new TableCellNode());
-                Nodes.Add(new TableContentCellNode());
-                Nodes.Add(new GoogleVideoNode());
+                Nodes.Add(new TableRowNode());
+                Nodes.Add(new TableDataNode());
                 Nodes.Add(new EmailNode());
                 Nodes.Add(new SubscriptNode());
                 Nodes.Add(new SuperscriptNode());
