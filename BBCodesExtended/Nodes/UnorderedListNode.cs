@@ -14,12 +14,7 @@ namespace BBCodesExtended.Nodes
         
         public override string ToHTML()
         {
-            StringBuilder sb = new StringBuilder();
-            sb.Append("<ul>");
-            foreach (Node n in this) // should be [li] or [*] (ListItemNode)
-                sb.Append(n.ToHTML());
-            sb.Append("</ul>");
-            return sb.ToString();
+            return ParseFormat("<ul>{0}</ul>");
         }
         
         public override string[] NodeNames {

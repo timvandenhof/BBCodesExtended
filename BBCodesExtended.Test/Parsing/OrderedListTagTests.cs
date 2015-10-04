@@ -7,39 +7,6 @@ namespace BBCodesExtended.Parsing.Test
     public class OrderedListTagTests
     {
         [TestMethod]
-        public void Can_parse_ordered_list_tags()
-        {
-            const string input = "The following text has an empty ordered list [ol][/ol] to it.";
-            const string expected = "The following text has an empty ordered list <ol></ol> to it.";
-
-            var actual = BBCode.Parse(input);
-
-            Assert.AreEqual(expected, actual);
-        }
-
-        [TestMethod]
-        public void Can_parse_multiple_ordered_list_tags()
-        {
-            const string input = "The following text has multiple [ol][/ol] empty ordered lists [ol][/ol] to it.";
-            const string expected = "The following text has multiple <ol></ol> empty ordered lists <ol></ol> to it.";
-
-            var actual = BBCode.Parse(input);
-
-            Assert.AreEqual(expected, actual);
-        }
-
-        [TestMethod]
-        public void Can_parse_nested_ordered_list_tags()
-        {
-            const string input = "The following text has a nested ordered list [ol][ol][/ol][/ol] to it.";
-            const string expected = "The following text has a nested ordered list <ol><ol></ol></ol> to it.";
-
-            var actual = BBCode.Parse(input);
-
-            Assert.AreEqual(expected, actual);
-        }
-
-        [TestMethod]
         public void Can_parse_ordered_list_tags_with_li_items()
         {
             const string input = "The following text has an ordered list [ol][li]item 1[/li][li]item 2[/li][li]item 3[/li][/ol] to it.";

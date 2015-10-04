@@ -55,7 +55,7 @@ namespace BBCodesExtended.Parsing.Test
         /// due to child tags being rendered inside the url and alt.
         /// </summary>
         [TestMethod]
-        public void Can_parse_nested_image_tags()
+        public void Does_skip_nested_image_tags()
         {
             const string input = "The following text contains an image: [img]https://www.google.nl/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png[img]https://www.google.nl/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png[/img][/img].";
             const string expected = "The following text contains an image: <img src=\"https://www.google.nl/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png\" alt=\"https://www.google.nl/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png\" />.";

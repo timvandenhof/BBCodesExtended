@@ -13,26 +13,16 @@ namespace BBCodesExtended.Nodes
         
         public override string ToHTML()
         {
-            System.Text.StringBuilder sb = new System.Text.StringBuilder();
-
-            // Ignore other nodes between the tags, except the first one (which is the url).
-            var e = this.GetEnumerator();
-            e.MoveNext();
-            sb.Append(e.Current.ToHTML());
-
-            if (this.Arguments.Count == 0)
+            var innerContent = GetInnerContent(firstNodeOnly: true);
+            if (string.IsNullOrWhiteSpace(innerContent))
             {
-                // basic IMG only
-                return "<img src=\"" + sb.ToString() + "\" alt=\"" + sb.ToString() + "\" />";
+                return string.Empty;
             }
-            else if (this.Arguments.Count == 1)
+
+            // Full width and height specified
+            if (Arguments != null && Arguments.Count == 2)
             {
-                string[] dimensions = this.Arguments[0].Item1.Split('x');
-                return "<img src=\"" + sb.ToString() + "\" alt=\"" + sb.ToString() + "\" width=\"" + dimensions[0] + "\" height=\"" + dimensions[1] + "\" />";
-            }
-            else
-            {
-                string ret = "<img src=\"" + sb.ToString() + "\" alt=\"" + sb.ToString() + "\" ";
+                string ret = "<img src=\"" + innerContent + "\" alt=\"" + innerContent + "\" ";
                 foreach (Tuple<string, string> arg in Arguments)
                 {
                     if (arg.Item1.ToLower().Trim() == "width")
@@ -42,6 +32,22 @@ namespace BBCodesExtended.Nodes
                 }
                 return ret + "/>";
             }
+
+            // Shorthand
+            if (Arguments != null && Arguments.Count == 1)
+            {
+                if(!string.IsNullOrWhiteSpace(this.Arguments[0].Item1))
+                {
+                    string[] dimensions = this.Arguments[0].Item1.Split('x');
+                    if(dimensions.Length == 2 && IsInteger(dimensions[0]) && IsInteger(dimensions[1]))
+                    {
+                        return "<img src=\"" + innerContent + "\" alt=\"" + innerContent + "\" width=\"" + dimensions[0] + "\" height=\"" + dimensions[1] + "\" />";
+                    }
+                }
+            }
+
+            // No width and height specified
+            return "<img src=\"" + innerContent + "\" alt=\"" + innerContent + "\" />";
         }
         
         public override string[] NodeNames {

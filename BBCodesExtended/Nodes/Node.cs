@@ -47,5 +47,62 @@ namespace BBCodesExtended.Nodes
         {
             get;
         }
+
+        internal string GetInnerContent(bool firstNodeOnly = false)
+        {
+            if(firstNodeOnly)
+            {
+                return GetContentFromFirstChildNode();
+            }
+            else
+            {
+                return GetContentFromChildNodes();
+            }
+        }
+
+        private string GetContentFromChildNodes()
+        {
+            StringBuilder sb = new StringBuilder();
+            foreach (Node n in this)
+            {
+                sb.Append(n.ToHTML());
+            }
+            return sb.ToString();
+        }
+
+        private string GetContentFromFirstChildNode()
+        {
+            var e = this.GetEnumerator();
+            if(e.MoveNext())
+            {
+                return e.Current.ToHTML();
+            }
+            else
+            {
+                return string.Empty;
+            }
+        }
+
+        internal string ParseFormat(string format, bool keepEmpty = false)
+        {
+            var innerContent = GetInnerContent();
+            if (!keepEmpty && string.IsNullOrWhiteSpace(innerContent))
+            {
+                return string.Empty;
+            }
+            else
+            {
+                return string.Format(format, innerContent);
+            }
+        }
+
+        internal bool IsInteger(string input)
+        {
+            if (string.IsNullOrWhiteSpace(input))
+                return false;
+
+            int value;
+            return (int.TryParse(input, out value));
+        }
     }
 }

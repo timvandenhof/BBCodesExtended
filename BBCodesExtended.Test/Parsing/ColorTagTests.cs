@@ -76,7 +76,7 @@ namespace BBCodesExtended.Parsing.Test
         public void Does_skip_color_tags_with_invalid_hexcolor()
         {
             const string input = "The following text has no [color=#test]color[/color] to it.";
-            const string expected = "The following text has no  color to it.";
+            const string expected = "The following text has no color to it.";
 
             var actual = BBCode.Parse(input);
 

@@ -14,12 +14,22 @@ namespace BBCodesExtended.Nodes
         
         public override string ToHTML()
         {
-            StringBuilder sb = new StringBuilder();
-            foreach (Node n in this)
-                sb.Append(n.ToHTML());
-            return "<span style=\"font-size:" + Arguments[0].Item1 + "px\">" + sb.ToString() + "</span>";
+            var innerContent = GetInnerContent();
+            if (string.IsNullOrWhiteSpace(innerContent))
+            {
+                return string.Empty;
+            }
+
+            if (Arguments != null && Arguments.Count != 0 && IsInteger(Arguments[0].Item1))
+            {
+                return "<span style=\"font-size:" + Arguments[0].Item1 + "px\">" + innerContent + "</span>";
+            }
+            else
+            {
+                return innerContent;
+            }
         }
-        
+
         public override string[] NodeNames {
             get {
                 return new string[] { "size" };

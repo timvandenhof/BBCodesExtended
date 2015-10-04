@@ -71,5 +71,27 @@ namespace BBCodesExtended.Parsing.Test
 
             Assert.AreEqual(expected, actual);
         }
+
+        [TestMethod]
+        public void Does_skip_size_tags_with_decimal_seperator()
+        {
+            const string input = "The following text has a [size=10.1]normal size[/size] to it.";
+            const string expected = "The following text has a normal size to it.";
+
+            var actual = BBCode.Parse(input);
+
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        public void Does_skip_size_tags_with_thousend_seperator()
+        {
+            const string input = "The following text has a [size=10,1]normal size[/size] to it.";
+            const string expected = "The following text has a normal size to it.";
+
+            var actual = BBCode.Parse(input);
+
+            Assert.AreEqual(expected, actual);
+        }
     }
 }

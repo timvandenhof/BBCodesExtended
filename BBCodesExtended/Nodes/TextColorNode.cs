@@ -13,16 +13,41 @@ namespace BBCodesExtended.Nodes
         
         public override string ToHTML()
         {
-            System.Text.StringBuilder sb = new System.Text.StringBuilder();
-            foreach (Node n in this)
-                sb.Append(n.ToHTML());
-            //<span style="color:#FF0000;">
-            if (Arguments[0].Item1.Contains("#"))
-                return "<span style=\"color:" + Arguments[0].Item1 + "\">" + sb.ToString() + "</span>";
-            else if (IsHex(Arguments[0].Item1))
-                return "<span style=\"color:#" + Arguments[0].Item1 + "\">" + sb.ToString() + "</span>";
-            else
-                return "<span style=\"color:" + Arguments[0].Item1 + "\">" + sb.ToString() + "</span>";
+            var innerContent = GetInnerContent();
+            if (string.IsNullOrWhiteSpace(innerContent))
+            {
+                return string.Empty;
+            }
+
+            if (Arguments != null && Arguments.Count != 0)
+            {
+                if(!string.IsNullOrWhiteSpace(Arguments[0].Item1))
+                {
+                    var color = Arguments[0].Item1;
+                    if (color.StartsWith("#"))
+                    {
+                        if (IsHex(color.Substring(1)))
+                        {
+                            return "<span style=\"color:" + color + "\">" + innerContent + "</span>";
+                        }
+                        else
+                        {
+                            return innerContent;
+                        }
+                    }
+                    else if(IsHex(color))
+                    {
+                        return "<span style=\"color:#" + color + "\">" + innerContent + "</span>";
+                    }
+                    else
+                    {
+                        // todo escape color to prevent injection
+                        return "<span style=\"color:" + color + "\">" + innerContent + "</span>";
+                    }
+                }
+            }
+
+            return innerContent;
         }
         
         public override string[] NodeNames {

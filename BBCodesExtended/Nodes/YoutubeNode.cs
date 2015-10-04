@@ -13,11 +13,13 @@ namespace BBCodesExtended.Nodes
         
         public override string ToHTML()
         {
-            System.Text.StringBuilder sb = new System.Text.StringBuilder();
-            foreach (Node n in this) // Todo: First only
-                sb.Append(n.ToHTML());
+            var innerContent = GetInnerContent(firstNodeOnly: true);
+            if (string.IsNullOrWhiteSpace(innerContent))
+            {
+                return string.Empty;
+            }
 
-            return "<iframe width=\"420\" height=\"315\" src=\"http://youtube.com/embed/" + sb.ToString() + "\" frameborder=\"0\" allowfullscreen></iframe>";
+            return string.Format("<iframe width=\"420\" height=\"315\" src=\"http://youtube.com/embed/{0}\" frameborder=\"0\" allowfullscreen></iframe>", innerContent);
         }
         
         public override string[] NodeNames {

@@ -51,7 +51,7 @@ namespace BBCodesExtended.Parsing.Test
         }
 
         [TestMethod]
-        public void Does_skip_empty_b_tags()
+        public void Does_skip_empty_email_tags()
         {
             const string input = "The following text has no [email][/email] email to it.";
             const string expected = "The following text has no  email to it.";

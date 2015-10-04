@@ -7,50 +7,6 @@ namespace BBCodesExtended.Parsing.Test
     public class UnorderedListTagTests
     {
         [TestMethod]
-        public void Can_parse_unordered_list_ul_tags()
-        {
-            const string input = "The following text has an empty unordered list [ul][/ul] to it.";
-            const string expected = "The following text has an empty unordered list <ul></ul> to it.";
-
-            var actual = BBCode.Parse(input);
-
-            Assert.AreEqual(expected, actual);
-        }
-
-        [TestMethod]
-        public void Can_parse_unordered_list_list_tags()
-        {
-            const string input = "The following text has an empty unordered list [list][/list] to it.";
-            const string expected = "The following text has an empty unordered list <ul></ul> to it.";
-
-            var actual = BBCode.Parse(input);
-
-            Assert.AreEqual(expected, actual);
-        }
-
-        [TestMethod]
-        public void Can_parse_multiple_unordered_list_tags()
-        {
-            const string input = "The following text has multiple [ul][/ul] empty unordered lists [ul][/ul] to it.";
-            const string expected = "The following text has multiple <ul></ul> empty unordered lists <ul></ul> to it.";
-
-            var actual = BBCode.Parse(input);
-
-            Assert.AreEqual(expected, actual);
-        }
-
-        [TestMethod]
-        public void Can_parse_nested_unordered_list_tags()
-        {
-            const string input = "The following text has a nested unordered list [ul][ul][/ul][/ul] to it.";
-            const string expected = "The following text has a nested unordered list <ul><ul></ul></ul> to it.";
-
-            var actual = BBCode.Parse(input);
-
-            Assert.AreEqual(expected, actual);
-        }
-
-        [TestMethod]
         public void Can_parse_unordered_list_tags_with_li_items()
         {
             const string input = "The following text has an unordered list [ul][li]item 1[/li][li]item 2[/li][li]item 3[/li][/ul] to it.";

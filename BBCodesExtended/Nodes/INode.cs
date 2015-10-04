@@ -13,10 +13,7 @@ namespace BBCodesExtended.Nodes
         
         public override string ToHTML()
         {
-            System.Text.StringBuilder sb = new System.Text.StringBuilder();
-            foreach (Node n in this)
-                sb.Append(n.ToHTML());
-            return "<i>" + sb.ToString() + "</i>";
+            return ParseFormat("<i>{0}</i>");
         }
         
         public override string[] NodeNames {
