@@ -12,7 +12,9 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documentation", "Documentation", "{3136AE0D-9594-457D-9D15-3AA5FB8622FE}"
 	ProjectSection(SolutionItems) = preProject
 		Documents\BBCode.org tags reference.htm = Documents\BBCode.org tags reference.htm
+		Documentation\BBCodes implemented.txt = Documentation\BBCodes implemented.txt
 		Documents\Teamoplis BBCode Reference Guide.htm = Documents\Teamoplis BBCode Reference Guide.htm
+		Documentation\TODO.txt = Documentation\TODO.txt
 	EndProjectSection
 EndProject
 Global

@@ -54,12 +54,6 @@
     <Compile Include="Generators\IGenerator.cs" />
     <Compile Include="Generators\XMLGenerator.cs" />
     <Compile Include="Generators\XmlTreeGenerator.cs" />
-    <Compile Include="BBCodeWebHandler.cs" />
-    <None Include="..\README.txt">
-      <Link>README.txt</Link>
-    </None>
-    <None Include="TODO.txt" />
-    <None Include="BBCodes.txt" />
     <Compile Include="Nodes\BNode.cs" />
     <Compile Include="Nodes\CodeNode.cs" />
     <Compile Include="Nodes\ImageNode.cs" />
