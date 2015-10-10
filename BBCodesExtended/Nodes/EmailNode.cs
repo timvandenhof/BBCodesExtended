@@ -26,7 +26,7 @@ namespace BBCodesExtended.Nodes
             else
             {
                 // innercontent is html encoded
-                return "<a href=\"mailto:" + EncodeForHtmlAttribute(innerContent, true, true) + "\">" + innerContent + "</a>";
+                return "<a href=\"mailto:" + EncodeForHtmlAttribute(innerContent, true) + "\">" + innerContent + "</a>";
             }
         }
         

@@ -90,7 +90,7 @@ namespace BBCodesExtended.Parsing.Test
         {
             const string input = "The following text has an [email]<strong>email@mail.example</strong>[/email] to it.";
             // XSS: The following text has an <a href=\"mailto:<strong>email@mail.example</strong>\"><strong>email@mail.example</strong></a> to it.";
-            const string expected = "The following text has an <a href=\"mailto:email@mail.example\">&lt;strong&gt;email@mail.example&lt;/strong&gt;</a> to it.";
+            const string expected = "The following text has an <a href=\"mailto:&lt;strong&gt;email@mail.example&lt;/strong&gt;\">&lt;strong&gt;email@mail.example&lt;/strong&gt;</a> to it.";
 
             var actual = BBCode.Parse(input);
 
@@ -102,7 +102,7 @@ namespace BBCodesExtended.Parsing.Test
         {
             const string input = "The following text has an [email=<strong>email@mail.example</strong>]email@mail.example[/email] to it.";
             // XSS: The following text has an <a href=\"mailto:<strong>email@mail.example</strong>\">email@mail.example</a> to it.";
-            const string expected = "The following text has an <a href=\"mailto:email@mail.example\">email@mail.example</a> to it.";
+            const string expected = "The following text has an <a href=\"mailto:&lt;strong&gt;email@mail.example&lt;/strong&gt;\">email@mail.example</a> to it.";
 
             var actual = BBCode.Parse(input);
 

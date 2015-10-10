@@ -169,7 +169,7 @@ namespace BBCodesExtended.Parsing.Test
             System.Diagnostics.Trace.WriteLine("URL = " + url);
 
             string input = "We have a link to [url]" + url + "[/url].";
-            const string expected = "We have a link to <a href=\"http://www.website.example/?param=&lt;b&gt;>trickt&lt;/b&gt;\">http://www.website.example/?param=&lt;b&gt;trickt&lt;/b&gt;</a>.";
+            const string expected = "We have a link to <a href=\"http://www.website.example/?param=&lt;b&gt;tricky&lt;/b&gt;\">http://www.website.example/?param=&lt;b&gt;tricky&lt;/b&gt;</a>.";
 
             var actual = BBCode.Parse(input);
 

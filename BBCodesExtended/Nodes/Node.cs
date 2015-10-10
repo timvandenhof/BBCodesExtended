@@ -127,11 +127,10 @@ namespace BBCodesExtended.Nodes
         /// Encode the specified string for HTML attribute use
         /// </summary>
         /// <param name="input">The string to use</param>
-        /// <param name="filterHtml">Strip out HTML tags?</param>
         /// <param name="isEncoded">Is already encoded?</param>
         /// <returns>HTML attribute safe string</returns>
         /// <remarks>isEncoded ensures that the string is decoded first before processing.</remarks>
-        public string EncodeForHtmlAttribute(string input, bool filterHtml = true, bool isEncoded = false)
+        public string EncodeForHtmlAttribute(string input, bool isEncoded = false)
         {
             var cleanInput = input;
 
@@ -141,12 +140,6 @@ namespace BBCodesExtended.Nodes
             }
 
             cleanInput = cleanInput.ReplaceCarriageReturn();
-
-            if(filterHtml)
-            {
-                cleanInput = cleanInput.StripHtmlTags();
-            }
-
             cleanInput = AntiXssEncoder.HtmlEncode(cleanInput, useNamedEntities: true);
             return cleanInput;
         }

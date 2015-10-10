@@ -81,7 +81,7 @@ namespace BBCodesExtended.Parsing.Test
         {
             const string input = "The following text has an image [img]<b>http://website.example/picture.png</b>[/img] to it.";
             // XSS: The following text had an image <img src="<b>http://website.example/picture.png</b>" alt="<b>http://website.example/picture.png</b>" /> to it.";
-            const string expected = "The following text has an image <img src=\"http://website.example/picture.png\" alt=\"http://website.example/picture.png\" /> to it.";
+            const string expected = "The following text has an image <img src=\"&lt;b&gt;http://website.example/picture.png&lt;/b&gt;\" alt=\"&lt;b&gt;http://website.example/picture.png&lt;/b&gt;\" /> to it.";
 
             var actual = BBCode.Parse(input);
 
@@ -93,7 +93,7 @@ namespace BBCodesExtended.Parsing.Test
         {
             const string input = "The following text has an image [img][b]http://website.example/picture.png[/b][/img] to it.";
             // XSS: The following text had an image <img src="<b>http://website.example/picture.png</b>" alt="<b>http://website.example/picture.png</b>" /> to it.";
-            const string expected = "The following text has an image <img src=\"http://website.example/picture.png\" alt=\"http://website.example/picture.png\" /> to it.";
+            const string expected = "The following text has an image <img src=\"&lt;b&gt;http://website.example/picture.png&lt;/b&gt;\" alt=\"&lt;b&gt;http://website.example/picture.png&lt;/b&gt;\" /> to it.";
 
             var actual = BBCode.Parse(input);
 
