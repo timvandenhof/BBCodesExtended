@@ -42,7 +42,7 @@ namespace BBCodesExtended.Nodes
                     else
                     {
                         // todo escape color to prevent injection
-                        return "<span style=\"color:" + color + "\">" + innerContent + "</span>";
+                        return "<span style=\"color:" + EncodeForCss(color) + "\">" + innerContent + "</span>";
                     }
                 }
             }

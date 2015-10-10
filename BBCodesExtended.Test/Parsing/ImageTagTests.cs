@@ -75,5 +75,103 @@ namespace BBCodesExtended.Parsing.Test
 
             Assert.AreEqual(expected, actual);
         }
+
+        [TestMethod]
+        public void Does_escape_image_tags_url_to_prevent_html_injection_in_body_simple()
+        {
+            const string input = "The following text has an image [img]<b>http://website.example/picture.png</b>[/img] to it.";
+            // XSS: The following text had an image <img src="<b>http://website.example/picture.png</b>" alt="<b>http://website.example/picture.png</b>" /> to it.";
+            const string expected = "The following text has an image <img src=\"http://website.example/picture.png\" alt=\"http://website.example/picture.png\" /> to it.";
+
+            var actual = BBCode.Parse(input);
+
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        public void Does_escape_image_tags_url_to_prevent_html_injection_in_body_simple_using_bbcode()
+        {
+            const string input = "The following text has an image [img][b]http://website.example/picture.png[/b][/img] to it.";
+            // XSS: The following text had an image <img src="<b>http://website.example/picture.png</b>" alt="<b>http://website.example/picture.png</b>" /> to it.";
+            const string expected = "The following text has an image <img src=\"http://website.example/picture.png\" alt=\"http://website.example/picture.png\" /> to it.";
+
+            var actual = BBCode.Parse(input);
+
+            Assert.AreEqual(expected, actual);
+        }
+
+
+
+        //[TestMethod]
+        //public void Does_escape_email_tags_address_to_prevent_html_injection_in_body_and_url_simple()
+        //{
+        //    const string input = "The following text has an [email]<strong>email@mail.example</strong>[/email] to it.";
+        //    // XSS: The following text has an <a href=\"mailto:<strong>email@mail.example</strong>\"><strong>email@mail.example</strong></a> to it.";
+        //    const string expected = "The following text has an <a href=\"mailto:&lt;strong&gt;email@mail.example&lt;/strong&gt;\">&lt;strong&gt;email@mail.example&lt;/strong&gt;</a> to it.";
+
+        //    var actual = BBCode.Parse(input);
+
+        //    Assert.AreEqual(expected, actual);
+        //}
+
+        //[TestMethod]
+        //public void Does_escape_email_tags_address_to_prevent_html_injection_in_url_simple()
+        //{
+        //    const string input = "The following text has an [email=<strong>email@mail.example</strong>]email@mail.example[/email] to it.";
+        //    // XSS: The following text has an <a href=\"mailto:<strong>email@mail.example</strong>\">email@mail.example</a> to it.";
+        //    const string expected = "The following text has an <a href=\"mailto:&lt;strong&gt;email@mail.example&lt;/strong&gt;\">email@mail.example</a> to it.";
+
+        //    var actual = BBCode.Parse(input);
+
+        //    Assert.AreEqual(expected, actual);
+        //}
+
+        ///// <summary>
+        ///// Framework does not allow this kind of construction, throws parse exception in stead of escaping all the rubbish.
+        ///// </summary>
+        //[TestMethod]
+        //[ExpectedException(typeof(Exceptions.BBCodeParseException))]
+        //public void Does_escape_email_tags_address_to_prevent_html_injection_using_attribute_bypass()
+        //{
+        //    const string input = "The following text has an [email=email@mail.example\" style=\"color:red]email@mail.example[/email] to it.";
+        //    // XSS: The following text has an <a href="mailto:email@mail.example" style="color:red">email@mail.example</a> to it.";
+        //    //const string expected = "The following text has an <a href=\"mailto:email@mail.example\">email@mail.example</a> to it.";
+        //    const string expectedMessage = "No node found for type 'email=email@mail.example\"'!";
+
+        //    try
+        //    {
+        //        var actual = BBCode.Parse(input);
+        //    }
+        //    catch (Exceptions.BBCodeParseException parseEx)
+        //    {
+
+        //        Assert.AreEqual(expectedMessage, parseEx.Message);
+        //        throw;
+        //    }
+        //}
+
+        ///// <summary>
+        ///// Framework does not allow this kind of construction, throws parse exception in stead of escaping all the rubbish.
+        ///// </summary>
+        //[TestMethod]
+        //[ExpectedException(typeof(Exceptions.BBCodeParseException))]
+        //public void Does_escape_email_tags_address_to_prevent_javascript_injection_using_attribute_bypass()
+        //{
+        //    const string input = "The following text has an [email=email@mail.example\" onload=\"alert('xss');]email@mail.example[/email] to it.";
+        //    // XSS: The following text has an <a href="mailto:email@mail.example" onload="alert('XSS');">email@mail.example</a> to it.";
+        //    //const string expected = "The following text has an <a href=\"mailto:email@mail.example\">email@mail.example</a> to it.";
+        //    const string expectedMessage = "No node found for type 'email=email@mail.example\"'!";
+
+        //    try
+        //    {
+        //        var actual = BBCode.Parse(input);
+        //    }
+        //    catch (Exceptions.BBCodeParseException parseEx)
+        //    {
+
+        //        Assert.AreEqual(expectedMessage, parseEx.Message);
+        //        throw;
+        //    }
+        //}
     }
 }

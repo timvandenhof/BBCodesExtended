@@ -17,3 +17,5 @@ Tim:
 - Support modbreak tag
 - Support offtopic tag
 - Support membersonly tag
+
+- Bug fix: non closed tag results in arithmic stackoverflow in parser. TTL construction?

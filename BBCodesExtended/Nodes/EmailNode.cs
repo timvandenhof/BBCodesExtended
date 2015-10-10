@@ -21,11 +21,12 @@ namespace BBCodesExtended.Nodes
 
             if (Arguments != null && Arguments.Count != 0)
             {
-                return "<a href=\"mailto:" + Arguments[0].Item1 + "\">" + innerContent + "</a>";
+                return "<a href=\"mailto:" + EncodeForHtmlAttribute(Arguments[0].Item1) + "\">" + innerContent + "</a>";
             }
             else
             {
-                return "<a href=\"mailto:" + innerContent + "\">" + innerContent + "</a>";
+                // innercontent is html encoded
+                return "<a href=\"mailto:" + EncodeForHtmlAttribute(innerContent, true, true) + "\">" + innerContent + "</a>";
             }
         }
         

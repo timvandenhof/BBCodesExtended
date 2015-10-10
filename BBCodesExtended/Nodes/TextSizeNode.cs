@@ -22,7 +22,7 @@ namespace BBCodesExtended.Nodes
 
             if (Arguments != null && Arguments.Count != 0 && IsInteger(Arguments[0].Item1))
             {
-                return "<span style=\"font-size:" + Arguments[0].Item1 + "px\">" + innerContent + "</span>";
+                return "<span style=\"font-size:" + EncodeForHtmlAttribute(Arguments[0].Item1) + "px\">" + innerContent + "</span>";
             }
             else
             {

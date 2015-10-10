@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Web;
 
 namespace BBCodesExtended.Nodes
 {
@@ -23,11 +24,8 @@ namespace BBCodesExtended.Nodes
         
         public override string ToHTML()
         {
-            //System.Text.StringBuilder sb = new System.Text.StringBuilder();
-            //foreach (Node n in this)
-            //    sb.Append(n.ToHTML());
-            //return sb.ToString();
-            return Text;//.Replace(" ", "&nbsp");
+            //return HttpUtility.HtmlEncode(Text);
+            return EncodeForHtml(Text);
         }
         
         public override string[] NodeNames {

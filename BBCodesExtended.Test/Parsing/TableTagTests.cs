@@ -36,22 +36,7 @@ namespace BBCodesExtended.Parsing.Test
 [/tr]
 [/table]
 to it.";
-            const string expected = @"The following text has a table
-<table>
-<tr>
-<th>header 1</th>
-<th>header 2</th>
-</tr>
-<tr>
-<td>data 1.1</td>
-<td>data 2.1</td>
-</tr>
-<tr>
-<td>data 1.2</td>
-<td>data 2.2</td>
-</tr>
-</table>
-to it.";
+            const string expected = @"The following text has a table<table><tr><th>header 1</th><th>header 2</th></tr><tr><td>data 1.1</td><td>data 2.1</td></tr><tr><td>data 1.2</td><td>data 2.2</td></tr></table>to it.";
 
             var actual = BBCode.Parse(input);
 

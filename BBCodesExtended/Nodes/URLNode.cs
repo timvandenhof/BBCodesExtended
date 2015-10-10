@@ -22,11 +22,11 @@ namespace BBCodesExtended.Nodes
 
             if (Arguments != null && Arguments.Count != 0)
             {
-                return "<a href=\"" + Arguments[0].Item1 + "\">" + innerContent + "</a>";
+                return "<a href=\"" + EncodeForHtmlAttribute(Arguments[0].Item1, true, false) + "\">" + innerContent + "</a>";
             }
             else
             {
-                return "<a href=\"" + innerContent + "\">" + innerContent + "</a>";
+                return "<a href=\"" + EncodeForHtmlAttribute(innerContent, true, true) + "\">" + innerContent + "</a>";
             }
         }
         

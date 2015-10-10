@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Text;
+using System.Web;
+using System.Web.Security.AntiXss;
 
 namespace BBCodesExtended.Nodes
 {
@@ -96,6 +99,11 @@ namespace BBCodesExtended.Nodes
             }
         }
 
+        /// <summary>
+        /// Is the specified string an integer?
+        /// </summary>
+        /// <param name="input">The input to verify</param>
+        /// <returns>True if it is an integer, false when not or when no value specified</returns>
         internal bool IsInteger(string input)
         {
             if (string.IsNullOrWhiteSpace(input))
@@ -103,6 +111,55 @@ namespace BBCodesExtended.Nodes
 
             int value;
             return (int.TryParse(input, out value));
+        }
+
+        /// <summary>
+        /// Encode the specified string for CSS use
+        /// </summary>
+        /// <param name="input">The string to use</param>
+        /// <returns>CSS safe string</returns>
+        public string EncodeForCss(string input)
+        {
+            return AntiXssEncoder.CssEncode(input);
+        }
+
+        /// <summary>
+        /// Encode the specified string for HTML attribute use
+        /// </summary>
+        /// <param name="input">The string to use</param>
+        /// <param name="filterHtml">Strip out HTML tags?</param>
+        /// <param name="isEncoded">Is already encoded?</param>
+        /// <returns>HTML attribute safe string</returns>
+        /// <remarks>isEncoded ensures that the string is decoded first before processing.</remarks>
+        public string EncodeForHtmlAttribute(string input, bool filterHtml = true, bool isEncoded = false)
+        {
+            var cleanInput = input;
+
+            if(isEncoded)
+            {
+                cleanInput = HttpUtility.HtmlDecode(cleanInput);
+            }
+
+            cleanInput = cleanInput.ReplaceCarriageReturn();
+
+            if(filterHtml)
+            {
+                cleanInput = cleanInput.StripHtmlTags();
+            }
+
+            cleanInput = AntiXssEncoder.HtmlEncode(cleanInput, useNamedEntities: true);
+            return cleanInput;
+        }
+
+        /// <summary>
+        /// Encode the specified string for HTML use
+        /// </summary>
+        /// <param name="input">The string to use</param>
+        /// <returns>HTML safe string</returns>
+        public string EncodeForHtml(string input)
+        {
+            var cleanInput = input.ReplaceCarriageReturn();
+            return AntiXssEncoder.HtmlEncode(cleanInput, useNamedEntities : true);
         }
     }
 }

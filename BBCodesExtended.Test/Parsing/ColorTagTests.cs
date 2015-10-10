@@ -82,5 +82,71 @@ namespace BBCodesExtended.Parsing.Test
 
             Assert.AreEqual(expected, actual);
         }
+
+        [TestMethod]
+        public void Does_escape_color_tags_color_to_prevent_css_injection()
+        {
+            const string input    = "The following text has a [color=red;font-size:10px]color[/color] to it.";
+            const string expected = "The following text has a <span style=\"color:red\\00003Bfont\\00002Dsize\\00003A10px\">color</span> to it.";
+
+            var actual = BBCode.Parse(input);
+
+            Assert.AreEqual(expected, actual, true, System.Globalization.CultureInfo.InvariantCulture);
+        }
+
+        /// <summary>
+        /// Framework does not allow this kind of construction, throws parse exception in stead of escaping all the rubbish.
+        /// </summary>
+        [TestMethod]
+        [ExpectedException(typeof(Exceptions.BBCodeParseException))]
+        public void Does_escape_color_tags_color_to_prevent_html_injection()
+        {
+            const string input = "The following text has a [color=red\"><h1>Custom</h1><span style=\"]color[/color] to it.";
+            const string expectedMessage = "No node found for type 'color=red\"><h1>Custom</h1><span'!";
+
+            try
+            {
+                var actual = BBCode.Parse(input);
+            }
+            catch(Exceptions.BBCodeParseException parseEx)
+            {
+                
+                Assert.AreEqual(expectedMessage, parseEx.Message);
+                throw;
+            }
+        }
+
+        [TestMethod]
+        public void Does_escape_color_tags_color_to_prevent_javascript_injection_attempt_1()
+        {
+            const string input = "The following text has a [color=red\"onclick=\"alert('danger');]color[/color] to it.";
+            const string expected = "The following text has a <span style=\"color:red\\000022onclick\\000022alert\\000028\\000027danger\\000027\\000029\\00003B\">color</span> to it.";
+
+            var actual = BBCode.Parse(input);
+
+            Assert.AreEqual(expected, actual);
+        }
+
+        /// <summary>
+        /// Framework does not allow this kind of construction, throws parse exception in stead of escaping all the rubbish.
+        /// </summary>
+        [TestMethod]
+        [ExpectedException(typeof(Exceptions.BBCodeParseException))]
+        public void Does_escape_color_tags_color_to_prevent_javascript_injection_attempt_2()
+        {
+            const string input = "The following text has a [color=red\" onclick=\"alert('danger');]color[/color] to it.";
+            const string expectedMessage = "No node found for type 'color=red\"'!";
+
+            try
+            {
+                var actual = BBCode.Parse(input);
+            }
+            catch (Exceptions.BBCodeParseException parseEx)
+            {
+
+                Assert.AreEqual(expectedMessage, parseEx.Message);
+                throw;
+            }
+        }
     }
 }

@@ -21,7 +21,7 @@ namespace BBCodesExtended.Nodes
 
             if (Arguments != null && Arguments.Count != 0)
             {
-                return "<blockquote cite=\"" + Arguments[0].Item1 + "\">" + innerContent + "</blockquote>";
+                return "<blockquote cite=\"" + EncodeForHtmlAttribute(Arguments[0].Item1) + "\">" + innerContent + "</blockquote>";
             }
             else
             {

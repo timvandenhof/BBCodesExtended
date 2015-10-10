@@ -27,13 +27,7 @@ namespace BBCodesExtended.Parsing.Test
 [li]item 3[/li]
 [/ol]
 to it.";
-            const string expected = @"The following text has an ordered list
-<ol>
-<li>item 1</li>
-<li>item 2</li>
-<li>item 3</li>
-</ol>
-to it.";
+            const string expected = @"The following text has an ordered list<ol><li>item 1</li><li>item 2</li><li>item 3</li></ol>to it.";
 
             var actual = BBCode.Parse(input);
 
@@ -61,13 +55,7 @@ to it.";
 [*]item 3[/*]
 [/ol]
 to it.";
-            const string expected = @"The following text has an ordered list
-<ol>
-<li>item 1</li>
-<li>item 2</li>
-<li>item 3</li>
-</ol>
-to it.";
+            const string expected = @"The following text has an ordered list<ol><li>item 1</li><li>item 2</li><li>item 3</li></ol>to it.";
 
             var actual = BBCode.Parse(input);
 
@@ -89,18 +77,7 @@ to it.";
 [li]item 4[/li]
 [/ol]
 to it.";
-            const string expected = @"The following text has an ordered list
-<ol>
-<li>item 1</li>
-<li>item 2</li>
-<li><ol>
-<li>item 2.1</li>
-<li>item 2.2</li>
-</ol></li>
-<li>item 3</li>
-<li>item 4</li>
-</ol>
-to it.";
+            const string expected = @"The following text has an ordered list<ol><li>item 1</li><li>item 2</li><li><ol><li>item 2.1</li><li>item 2.2</li></ol></li><li>item 3</li><li>item 4</li></ol>to it.";
             var actual = BBCode.Parse(input);
 
             Assert.AreEqual(expected, actual);
@@ -124,18 +101,7 @@ to it.";
 [li]item 4[/li]
 [/ol]
 to it.";
-            const string expected = @"The following text has an ordered list
-<ol>
-<li>item 1</li>
-<li>item 2</li>
-<ol>
-<li>item 2.1</li>
-<li>item 2.2</li>
-</ol>
-<li>item 3</li>
-<li>item 4</li>
-</ol>
-to it.";
+            const string expected = @"The following text has an ordered list<ol><li>item 1</li><li>item 2</li><ol><li>item 2.1</li><li>item 2.2</li></ol><li>item 3</li><li>item 4</li></ol>to it.";
             var actual = BBCode.Parse(input);
 
             Assert.AreEqual(expected, actual);
@@ -157,19 +123,7 @@ to it.";
 [li]item 4[/li]
 [/ol]
 to it.";
-            const string expected = @"The following text has an ordered list
-<ol>
-<li>item 1</li>
-<li>item 2
-<ol>
-<li>item 2.1</li>
-<li>item 2.2</li>
-</ol>
-</li>
-<li>item 3</li>
-<li>item 4</li>
-</ol>
-to it.";
+            const string expected = @"The following text has an ordered list<ol><li>item 1</li><li>item 2<ol><li>item 2.1</li><li>item 2.2</li></ol></li><li>item 3</li><li>item 4</li></ol>to it.";
             var actual = BBCode.Parse(input);
 
             Assert.AreEqual(expected, actual);

@@ -19,7 +19,7 @@ namespace BBCodesExtended.Nodes
                 return string.Empty;
             }
 
-            return string.Format("<iframe width=\"420\" height=\"315\" src=\"http://youtube.com/embed/{0}\" frameborder=\"0\" allowfullscreen></iframe>", innerContent);
+            return string.Format("<iframe width=\"420\" height=\"315\" src=\"http://youtube.com/embed/{0}\" frameborder=\"0\" allowfullscreen></iframe>", EncodeForHtmlAttribute(innerContent, true, true));
         }
         
         public override string[] NodeNames {

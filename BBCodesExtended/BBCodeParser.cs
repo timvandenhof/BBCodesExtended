@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using BBCodesExtended.Nodes;
+using BBCodesExtended.Exceptions;
 
 namespace BBCodesExtended
 {
@@ -391,8 +392,7 @@ namespace BBCodesExtended
                     // ...
                     break;
                 case ParseStrictness.ThrowErrors:
-                    // ERROR TIME :D
-                    throw new Exception(message);
+                    throw new BBCodeParseException(message);
                 default:
                     throw new Exception("Invalid value for ParseStrictness");
             }
